@@ -1,0 +1,2 @@
+1. Learned about vendor lockin and ways to prevent this.
+2. Backend vendor independent code.
