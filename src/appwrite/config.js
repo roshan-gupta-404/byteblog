@@ -47,7 +47,6 @@ export class Service{
                     content,
                     featuredImage,
                     status,
-                    userId
                 }
             )
         } catch (error) {
@@ -83,7 +82,7 @@ export class Service{
 
     async getPosts(queries = [Query.equal("status","active")]){ // status is key and active is value which is to be matched.
         try {
-            return await this.databases.getDocument(
+            return await this.databases.listDocuments(
                 conf.appwriteDbId,
                 conf.appwriteCollectionId,
                 queries
@@ -110,13 +109,15 @@ export class Service{
     }
 
     async deleteFile(fileId){
+        console.log(fileId);
         try {
             return await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId
             )
         } catch (error) {
-            
+            console.log("Appwrite service :: deleteFile :: error", error);
+            return false;
         }
     }
 
@@ -127,3 +128,6 @@ export class Service{
             )
     }
 }
+
+const service = new Service()
+export default service // exporting instance of service.

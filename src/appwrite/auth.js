@@ -12,9 +12,9 @@ export class AuthService {
         this.account = new Account(this.client)
     }
 
-    async createAccount({ email, password, name }) {
+    async createAccount({email, password, name }) {
         try {
-            const userAccount = await this.account.create(ID.unique, email, password, name); // this will return an object containing information about the user account, such as the user ID, email, name, and any other relevant details.
+            const userAccount = await this.account.create(ID.unique(), email, password, name); // this will return an object containing information about the user account, such as the user ID, email, name, and any other relevant details.
             if (userAccount) {
                 //call another method.
                 return this.login({ email, password }) // if account created the loging in the user.
@@ -37,6 +37,7 @@ export class AuthService {
 
     async getCurrentUser(){
         try {
+            console.log('getuser called');
             return await this.account.get(); // this will return current user session.
         } catch (error) {
             console.log("Appwrite service :: getCurrentUser :: error", error);

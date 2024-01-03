@@ -11,10 +11,12 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log('getting user');
     authService.getCurrentUser()
       .then((userData) => {
         if (userData) {
-          useDispatch(login({ userData }))
+          console.log('dispatching userdata');
+          dispatch(login({ userData }))
         }
         else {
           dispatch(logout()) // if login fails then calling logout just to update the state. its a good practice.
@@ -29,7 +31,7 @@ function App() {
       <div className='w-full block'>
         <Header />
         <main>
-          TODO: {/* <Outlet/> it will be from react router dom*/}
+          <Outlet/>
         </main>
         <Footer />
       </div>
