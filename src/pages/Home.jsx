@@ -7,11 +7,11 @@ function Home() {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState('Loading...')
     useEffect(() => {
-        console.log('called outside');
+        // console.log('called outside');
         appwriteServices.getPosts().then((posts) => {
-            console.log('called');
+            // console.log('called');
             if (posts) {
-                console.log('from home');
+                // console.log('from home');
                 console.log(posts);
                 console.log(posts.documents);
                 setPosts(posts.documents) //post.documents is a array of objects `{title: 'first', content: '', featuredImage: '65748dfd7659da02f14f', userId: '657455c5656b1592c70e', status: 'active', …}`
