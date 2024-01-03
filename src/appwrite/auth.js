@@ -54,6 +54,7 @@ export class AuthService {
         }
     }
 }
+// all async function is treated as promise and should be handled with then catch.
 
 const authService = new AuthService()
 
