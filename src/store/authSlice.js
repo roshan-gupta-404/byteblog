@@ -11,8 +11,6 @@ const authSlice = createSlice({
     reducers:{
         login:(state, action)=>{
             state.status = true
-            console.log('from login reducer');
-            console.log(action.payload.userData); 
             state.user = action.payload.userData // we will send objects in payload containing userData.
         },
         logout:(state,action)=>{

@@ -3,17 +3,12 @@ import { Container, PostCard } from '../components'
 import appwriteServices from '../appwrite/config'
 
 function Home() {
-    console.log('hello guys');
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState('Loading...')
     useEffect(() => {
-        // console.log('called outside');
+        // if user is signed in then geting the post and saving it in state.
         appwriteServices.getPosts().then((posts) => {
-            // console.log('called');
             if (posts) {
-                // console.log('from home');
-                console.log(posts);
-                console.log(posts.documents);
                 setPosts(posts.documents) //post.documents is a array of objects `{title: 'first', content: '', featuredImage: '65748dfd7659da02f14f', userId: '657455c5656b1592c70e', status: 'active', …}`
             }
             else{
@@ -22,8 +17,6 @@ function Home() {
         })
     }, [])
     if (posts?.length === 0) {
-        console.log('length=0 called');
-        console.log(posts.length);
         return (
             <div className="w-full py-8 mt-4 text-center">
                 <Container>
@@ -39,8 +32,6 @@ function Home() {
         )
     }
     // else if (posts === null) {
-    //     console.log('null post');
-    //     console.log(posts.length);
     //     return (
     //         <div className="w-full py-8 mt-4 text-center">
     //             <Container>
@@ -56,13 +47,12 @@ function Home() {
     //     )
     // }
     else {
-        console.log('else called');
         return (
             <div className='w-full py-8'>
                 <Container>
                     <div className='flex flex-wrap'>
                         {posts.map((post) => (
-                            <div key={post.$id} className='p-2 w-1/4'>
+                            <div key={post.$id} className='p-2 w-64'>
                                 <PostCard {...post} />
                             </div>
                         ))}

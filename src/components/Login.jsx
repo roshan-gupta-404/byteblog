@@ -18,9 +18,7 @@ function Login() {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                console.log("from Login.jsx component"+userData);
                 if(userData) dispatch(authLogin({userData})); // if i send it in this way then in authSLice i have to access through payload.userData
-                console.log(userData)
                 navigate("/")
 
             }
