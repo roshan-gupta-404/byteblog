@@ -6,9 +6,6 @@ function AllPosts() {
     useEffect(() => {
         appwriteServices.getPosts([]).then((posts) => {
             if (posts) {
-                console.log('from all posts');
-                console.log(posts);
-                console.log(posts.documents);
                 setPosts(posts.documents)
             }
         })

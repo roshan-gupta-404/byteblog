@@ -3,3 +3,4 @@
 3. Forward referencing.
 4. react hook form
 5. CORS
+6. Major security flaw was there. Any use can edit other user's post just passing its post id in url params. I solved it.
