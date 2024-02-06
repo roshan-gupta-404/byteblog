@@ -1,1 +1,1 @@
-Live Demo https://byteblog-theta.vercel.app/all-posts
+Live Demo https://byteblog-theta.vercel.app
