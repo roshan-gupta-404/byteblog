@@ -49,7 +49,7 @@ function App() {
           }
         })
       })
-      .finally(() => setLoading(false))
+      .finally(() => { console.log(x + ' finally of app');setLoading(false)})
   }, [logout])
 
   return !loading ?
