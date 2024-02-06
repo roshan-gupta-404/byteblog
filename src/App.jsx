@@ -16,6 +16,7 @@ function App() {
   useEffect(() => {
     console.log(x+ ' useEffect of app');
     try {
+      console.log(x + ' try block');
       authService.getCurrentUser()
       .then((userData) => {
         if (userData) {
@@ -30,7 +31,11 @@ function App() {
           dispatch(logout()) // if login fails then calling logout just to update the state. its a good practice.
         }
       })
+      .catch((err)=>{
+        console.log(x + ' then catch');
+      })
     } catch(error){
+      console.log(x + ' catch block');
       // console.log(error);
       // if current user not available then loging the user anonymously.
       authService.loginAnonymous().then((session) => {
