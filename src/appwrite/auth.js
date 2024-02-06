@@ -35,11 +35,20 @@ export class AuthService {
         }
     }
 
+    async loginAnonymous() {
+        try {
+            return await this.account.createAnonymousSession(); // this will return the session ID, user ID, and other relevant details.
+        } catch (error) {
+            throw error
+        }
+    }
+
     async getCurrentUser(){
         try {
             return await this.account.get(); // this will return current user session.
         } catch (error) {
-            console.log("Appwrite service :: getCurrentUser :: error", error);
+            // console.log("Appwrite service :: getCurrentUser :: error", error);
+            throw error
         }
 
         return null; // if failed to get user return null.

@@ -13,6 +13,10 @@ const authSlice = createSlice({
             state.status = true
             state.user = action.payload.userData // we will send objects in payload containing userData.
         },
+        anonymousLogin:(state, action)=>{
+            state.status = false
+            state.user = action.payload.userData
+        },
         logout:(state,action)=>{
             state.status = false
             state.user = null
@@ -21,5 +25,5 @@ const authSlice = createSlice({
     }
 })
 
-export const {login, logout} = authSlice.actions
+export const {login, logout, anonymousLogin} = authSlice.actions
 export default authSlice.reducer

@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Container, PostCard } from '../components'
 import appwriteServices from '../appwrite/config'
-
+let y = 0;
 function Home() {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState('Loading...')
+    y=y+1;
+    console.log(y +" outside useEffect in home");
+
     useEffect(() => {
+        console.log(y +' useEffect of home');
         // if user is signed in then geting the post and saving it in state.
         appwriteServices.getPosts().then((posts) => {
             if (posts) {
@@ -15,6 +19,7 @@ function Home() {
                 setLoading('Signup/Login to see blogs...')
             }
         })
+
     }, [])
     if (posts?.length === 0) {
         return (

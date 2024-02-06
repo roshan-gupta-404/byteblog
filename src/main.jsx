@@ -13,6 +13,7 @@ import Post from './pages/Post.jsx'
 import AddPost from './pages/AddPost.jsx'
 import EditPost from './pages/EditPost.jsx'
 import AuthLayout from './components/AuthLayout.jsx'
+import AnonymousLogin from './components/AnonymousLogin.jsx'
 
 
 const router = createBrowserRouter([
@@ -27,8 +28,8 @@ const router = createBrowserRouter([
         {
             path: "/login",
             element: (
-              // user doesn't require to be authenticate to access the login page. thats why authentication is pased false.
-               <AuthLayout authentication={false}> 
+              // user doesn't require to be authenticate to access the login page. thats why authenticationRequired is pased false.
+               <AuthLayout authenticationRequired={false}> 
                     <Login />
                 </AuthLayout>
             ),
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
         {
             path: "/signup",
             element: (
-                <AuthLayout authentication={false}>
+                <AuthLayout authenticationRequired={false}>
                     <Signup />
                 </AuthLayout>
             ),
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
         {
             path: "/all-posts",
             element: (
-                <AuthLayout authentication>
+                <AuthLayout authenticationRequired>
                     {" "}
                     <AllPosts />
                 </AuthLayout>
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
         {
             path: "/add-post",
             element: (
-                <AuthLayout authentication>
+                <AuthLayout authenticationRequired>
                     {" "}
                     <AddPost />
                 </AuthLayout>
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
         {
             path: "/edit-post/:slug",
             element: (
-                <AuthLayout authentication>
+                <AuthLayout authenticationRequired>
                     {" "}
                     <EditPost />
                 </AuthLayout>
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
         {
             path: "/post/:slug",
             element: <Post />,
+        },
+        {
+            path: "/anonymous",
+            element: <AnonymousLogin/>,
         },
     ],
 },

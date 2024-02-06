@@ -18,9 +18,12 @@ function Login() {
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                if(userData) dispatch(authLogin({userData})); // if i send it in this way then in authSLice i have to access through payload.userData
-                navigate("/")
+                if(userData) {
+                    console.log(userData);
+                    dispatch(authLogin({userData})); // if i send it in this way then in authSLice i have to access through payload.userData
+                    navigate("/")                
 
+                }
             }
         } catch (error) {
             setError(error.message)

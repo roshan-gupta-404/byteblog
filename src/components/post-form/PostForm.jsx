@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 
 function PostForm({ post }) {
-    const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
+    const { register, handleSubmit,formState, watch, setValue, control, getValues } = useForm({
                                                                                         defaultValues: {
                                                                                             title: post?.title || '',
                                                                                             slug: post?.slug || '',
@@ -15,12 +15,14 @@ function PostForm({ post }) {
                                                                                             status: post?.status || 'active',
                                                                                         },
     })
-    
+    const { errors } = formState
     const navigate = useNavigate()
     const userData = useSelector((state) => state.user)
+    console.log(userData);
 
     const submit = async (data) => {
         if (post) {
+            console.log('updation called');
             const file = await (data.image[0] ? appwriteService.uploadFile(data.image[0]) : null) //data.image[0] will give image. React hook form provide this functionality.
             if (file) {
                await appwriteService.deleteFile(post.featuredImage)
@@ -91,6 +93,7 @@ function PostForm({ post }) {
                 
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
+            
             <div className="w-1/3 px-2">
                 <Input
                     label="Featured Image :"
@@ -115,7 +118,7 @@ function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full hover:border-2">
+                <Button type="button" bgColor={post ? "bg-green-500" : undefined} className="w-full hover:border-2">
                     {post ? "Update" : "Submit"}
                 </Button>
             </div>
